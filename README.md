@@ -5,6 +5,7 @@ Esempio Socket in C: http://shinworld.altervista.org/wordpress/esempio-di-una-so
 
 Esempio Socket in Java: http://shinworld.altervista.org/wordpress/esempio-di-una-socket-in-java/
 
-Eesempio utilizzo RMI Java: http://shinworld.altervista.org/wordpress/rmi/
+Esempio utilizzo RMI Java: http://shinworld.altervista.org/wordpress/rmi/
 
-Utilizzo dei Thread con i Socket in Java: http://shinworld.altervista.org/wordpress/realizzare-un-server-socket-in-java-che-gestisce-piu-connessioni-contemporaneamente-tramite-thread/
+Utilizzo dei Thread con i Socket in Java:
+http://shinworld.altervista.org/wordpress/realizzare-un-server-socket-in-java-che-gestisce-piu-connessioni-contemporaneamente-tramite-thread/

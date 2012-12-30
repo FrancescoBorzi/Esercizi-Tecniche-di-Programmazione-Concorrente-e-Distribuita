@@ -1,4 +1,10 @@
-Esercizi-Tecniche-di-Programmazione-Concorrente-e-Distribuita
+Appunti:
 =============================================================
 
-Exercises about Socket, RMI, Thread..
+Esempio Socket in C: http://shinworld.altervista.org/wordpress/esempio-di-una-socket-in-c/
+
+Esempio Socket in Java: http://shinworld.altervista.org/wordpress/esempio-di-una-socket-in-java/
+
+Eesempio utilizzo RMI Java: http://shinworld.altervista.org/wordpress/rmi/
+
+Utilizzo dei Thread con i Socket in Java: http://shinworld.altervista.org/wordpress/realizzare-un-server-socket-in-java-che-gestisce-piu-connessioni-contemporaneamente-tramite-thread/

@@ -1,9 +1,15 @@
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.WebServiceRef;
+import reg_esami.FileNotFoundException_Exception;
+import reg_esami.IOException_Exception;
+import reg_esami.RegistrazioneEsami_Service;
 
 @WebServlet(name = "Media", urlPatterns =
 {
@@ -11,33 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 })
 public class Media extends HttpServlet
 {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/WebService/RegistrazioneEsami.wsdl")
+    private RegistrazioneEsami_Service service;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+            throws ServletException, IOException, IOException_Exception, FileNotFoundException_Exception
     {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        BufferedReader reader = new BufferedReader(new FileReader("db.txt"));
-        String media, tmp;
-        float count = 0, sum = 0, voto;
-        
-        while ((tmp = reader.readLine()) != null)
-        {
-            count++;
-            voto = myParser(tmp);
-            
-            if (voto == -1)
-            {
-                sum = -1;
-                break;
-            }
-            
-            sum += voto;
-        }
-        
-        if (sum == -1)
-            media = "Errore nel calcolo della media";
-        else
-            media = "Media: "+sum/count;
         
         try
         {
@@ -48,7 +34,7 @@ public class Media extends HttpServlet
             out.println("<body>");
             out.println("<center>");
             out.println("<h1>Servlet Registrazione Esami TPCD at " + request.getContextPath() + "</h1>");
-            out.println(media);
+            out.println(media());
             out.println("<p><a href='./'>Torna indietro</a></p>");
             out.println("</center>");
             out.println("</body>");
@@ -73,7 +59,11 @@ public class Media extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        try
+        {
+            processRequest(request, response);
+        }
+        catch (Exception ex)    {}
     }
 
     /**
@@ -89,7 +79,11 @@ public class Media extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        try
+        {
+            processRequest(request, response);
+        }
+        catch (Exception ex)    {}
     }
 
     /**
@@ -102,21 +96,10 @@ public class Media extends HttpServlet
     {
         return "Media dei voti registrati su db.txt";
     }// </editor-fold>
-    
-    public int myParser(String str)
+
+    private String media() throws IOException_Exception, FileNotFoundException_Exception
     {
-        for (int i = 0; i < str.length(); i++)
-        {
-            if (str.charAt(i) == '|')
-            {
-                int x = i+1;
-                
-                while (str.charAt(x) != '|')
-                    x++;
-                
-                return Integer.parseInt(str.substring(i+1, x));
-            }
-        }
-        return -1;
+        reg_esami.RegistrazioneEsami port = service.getRegistrazioneEsamiPort();
+        return port.media();
     }
 }

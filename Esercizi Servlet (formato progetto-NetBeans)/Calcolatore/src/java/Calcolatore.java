@@ -74,7 +74,7 @@ public class Calcolatore extends HttpServlet
             out.println("<center>");
             out.println("<h1>Servlet Calcolatore</h1>");
             out.println(risultato);
-            out.println("<a href='/Servlet_Calcolatore'>Torna indietro</a>");
+            out.println("<a href='.'>Torna indietro</a>");
             out.println("</center>");
             out.println("</body>");
             out.println("</html>");

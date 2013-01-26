@@ -6,18 +6,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "Registra", urlPatterns =
+@WebServlet(name = "Studente", urlPatterns =
 {
-    "/Registra"
+    "/Studente"
 })
-public class Registra extends HttpServlet
+public class Studente extends HttpServlet
 {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String output = "", redirect = "";
+        String output = "", redirect = "", matricola = "";
         
         // verifico validita' del Cookie
         Cookie[] usercookies = request.getCookies();
@@ -27,9 +27,10 @@ public class Registra extends HttpServlet
         {
             for (int i = 0; i < usercookies.length; i++)
             {
-                if (usercookies[i].getName().compareTo("registrazione&consultazione%esami") == 0 && usercookies[i].getValue().charAt(0) == '1')
+                if (usercookies[i].getName().compareTo("registrazione&consultazione%esami") == 0 && (matricola = usercookies[i].getValue()).charAt(0) == '0')
                 {
                     ok = true;
+                    matricola = matricola.substring(1, matricola.length());
                     break;
                 }
             }
@@ -41,49 +42,24 @@ public class Registra extends HttpServlet
         }
         else
         {
-        
-            // verifico validita' dei parametri
-            String matricola, nome, cognome, materia;
-            int voto = -1;
+            BufferedReader reader = new BufferedReader(new FileReader("profili_studenti/"+matricola+".txt"));
+            String tmp;
             
-            matricola = request.getParameter("matricola");
-            nome = request.getParameter("nome");
-            cognome = request.getParameter("cognome");
-            materia = request.getParameter("materia");
+            output = "<h2>Elenco materie registrate:</h2>\n"
+                    + "<hr>\n";
             
-            try
-            {
-                voto = Integer.parseInt(request.getParameter("voto"));
-            }
-            catch (NumberFormatException e) {}
+            while ((tmp = reader.readLine()) != null)
+                output += tmp;
             
-            if (matricola.compareTo("") == 0 || nome.compareTo("") == 0 || cognome.compareTo("") == 0 || materia.compareTo("") == 0 || voto < 18 || voto > 30)
-            {
-                output = "Errore! Dati inseriti non corretti!";
-                redirect = "<meta http-equiv=\"REFRESH\" CONTENT=\"2; URL=docente.jsp\">";
-            }
-            else
-            {
-                String v = voto+"";
-                
-                if (voto == 30 && request.getParameter("lode") != null)
-                    v+=" e lode";
-                    
-                BufferedWriter writer = new BufferedWriter(new FileWriter("profili_studenti/"+matricola+".txt", true));
-                
-                writer.append("<p>Materia: <b>"+materia+"</b> Voto: <b>"+v+"</b></p>\n");
-                redirect = "<meta http-equiv=\"REFRESH\" CONTENT=\"1; URL=docente.jsp\">";
-                output = "Materia registrata con successo!";
-                writer.close();
-            }
+            output += "\n<hr>\n";
         }
         
         try
         {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Registrazione...</title>");     
             out.println(redirect);
+            out.println("<title>Portale Studenti</title>");
             out.println("</head>");
             out.println("<body><center>");
             out.println(output);
@@ -97,6 +73,7 @@ public class Registra extends HttpServlet
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -114,6 +91,6 @@ public class Registra extends HttpServlet
     @Override
     public String getServletInfo()
     {
-        return "Verifica il cookie e registra la materia";
+        return "Controlla la validita' del Cookie e restituisce le materie registrate dello studente.";
     }// </editor-fold>
 }

@@ -16,7 +16,7 @@
                         if (usercookies[i].getValue() .charAt(0) == '0')
                         {
                             %>
-                            <meta http-equiv="REFRESH" CONTENT="0; URL=studente.jsp">
+                            <meta http-equiv="REFRESH" CONTENT="0; URL=Studente">
                             <%
                         }
                         else if (usercookies[i].getValue().charAt(0) == '1')

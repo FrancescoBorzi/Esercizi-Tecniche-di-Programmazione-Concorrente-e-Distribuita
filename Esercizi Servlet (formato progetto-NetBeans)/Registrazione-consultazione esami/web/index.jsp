@@ -16,13 +16,13 @@
                         if (usercookies[i].getValue() .charAt(0) == '0')
                         {
                             %>
-                            <meta http-equiv="REFRESH" CONTENT="0; URL=Studente">
+                            <meta http-equiv="REFRESH" CONTENT="0; URL=studente.jsp">
                             <%
                         }
                         else if (usercookies[i].getValue().charAt(0) == '1')
                         {
                             %>
-                            <meta http-equiv="REFRESH" CONTENT="0; URL=Docente">
+                            <meta http-equiv="REFRESH" CONTENT="0; URL=docente.jsp">
                             <%
                         }
                         break;

@@ -51,8 +51,8 @@ public class Login extends HttpServlet
                    login = new Cookie("registrazione&consultazione%esami", "0"+username);
                    login.setMaxAge(600);
                    response.addCookie(login);
-                   redirect = "<meta http-equiv=\"REFRESH\" CONTENT=\"3; URL=index.jsp\">";
-                   output = "Redirect in corso...";
+                   redirect = "<meta http-equiv=\"REFRESH\" CONTENT=\"1; URL=index.jsp\">";
+                   output = "Accesso in corso...";
                }
                else
                {
@@ -80,8 +80,8 @@ public class Login extends HttpServlet
                    login = new Cookie("registrazione&consultazione%esami", "1"+username);
                    login.setMaxAge(600);
                    response.addCookie(login);
-                   redirect = "<meta http-equiv=\"REFRESH\" CONTENT=\"3; URL=index.jsp\">";
-                   output = "Redirect in corso...";
+                   redirect = "<meta http-equiv=\"REFRESH\" CONTENT=\"1; URL=index.jsp\">";
+                   output = "Accesso in corso...";
                }
                else
                {

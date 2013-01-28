@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
  * - 1:username (nel caso del docente)
  */
 
-@WebServlet(name = "RegistrazioneConsultazione", urlPatterns =
+@WebServlet(name = "Login", urlPatterns =
 {
-    "/RegistrazioneConsultazione"
+    "/Login"
 })
 public class Login extends HttpServlet
 {

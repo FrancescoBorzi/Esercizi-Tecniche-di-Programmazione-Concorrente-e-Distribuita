@@ -72,7 +72,8 @@ public class Studente extends HttpServlet
             }
             catch (Exception e)
             {
-                output += e;
+                output += "Errore! <br />"
+                        + e;
             }
         }
         

@@ -1,5 +1,7 @@
 /* Realizzare due thread A e B, che stampano rispettivamente i numeri pari e i numeri dispari (da 1 a 100). */
 
+// in caso di errore compilare aggiungendo il parametro "-pthread", esempio: "gcc Thread.c -pthread -o ex"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

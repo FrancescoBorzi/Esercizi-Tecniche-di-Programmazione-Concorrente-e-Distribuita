@@ -1,7 +1,7 @@
 /*
 Scrivere in C o Java un programma che:
 
-1)    apra una connessione verso l'IP 151.97.252.130, port 80
+1)    apra una connessione verso l'host www.dmi.unict.it, port 80
 2)    invii la stringa "GET /pappalardo/prova/07.aux\n"
 3)    nello stream di byte ricevuti, cerchi il primo contenente il carattere '-'
 4)    memorizzi quindi i successivi 31 byte
@@ -19,7 +19,7 @@ public class es07
 		int i;
 		try
 		{
-			InetAddress address = InetAddress.getByName("151.97.252.130");
+			InetAddress address = InetAddress.getByName("www.dmi.unict.it");
 			Socket client = new Socket(address, 80);
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())),true);

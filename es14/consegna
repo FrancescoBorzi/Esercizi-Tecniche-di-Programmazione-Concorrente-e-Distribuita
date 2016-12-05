@@ -1,7 +1,7 @@
 Prima parte
 Scrivere un client che, tramite socket (C o Java):
 
-    Apra una connessione verso l'IP 151.97.252.130 port 80
+    Apra una connessione verso l'host www.dmi.unict.it port 80
     Invii al server la stringa "GET /pappalardo/prova/14.aux\n"
     Analizzi lo stream ricevuto per:
         identificare una sequenza di 9 righe consecutive che contengono esattamente 9 numeri ciascuna,

@@ -1,7 +1,7 @@
 /*
 Scrivere in C o Java un programma cliente che:
 
-    apra una connessione verso l'IP 151.97.252.130, port 80,
+    apra una connessione verso l'host www.dmi.unict.it, port 80,
     invii a tale server la stringa "GET /pappalardo/prova/09.aux\n",
     nello stream testo ricevuto, legga il numero che rappresenta il (solo) contenuto della riga 12,
     moltiplichi tale numero per il valore restituito dalla funzione remota hash(), eseguita su localhost e applicata al proprio cognome; sia n il risultato,
@@ -21,10 +21,10 @@ public class parte2
 		int n, i = 1;
 		try
 		{
-			InetAddress address = InetAddress.getByName("151.97.252.130");
+			InetAddress address = InetAddress.getByName("www.dmi.unict.it");
 			Socket client = new Socket(address, 80);
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			
 			out.println("GET /pappalardo/prova/09.aux\n");
 			
@@ -44,7 +44,7 @@ public class parte2
 			client.close();
 			client = new Socket(address, 80);
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			out = new PrintWriter(client.getOutputStream(), true);
 			
 			out.println("GET /pappalardo/prova/09b.aux\n");
 			

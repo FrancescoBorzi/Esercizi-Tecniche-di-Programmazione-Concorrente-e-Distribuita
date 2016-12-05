@@ -24,7 +24,7 @@ public class server implements es18
 			Socket client = new Socket(address, port);
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			
 			String tmp;
 			out.println(msg+"\n\n");

@@ -15,7 +15,7 @@ public class client
 		{
 			InetAddress address = InetAddress.getByName("localhost");
 			Socket client = new Socket(address, 12345);
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			
 			out.println("[S]");

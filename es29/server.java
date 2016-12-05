@@ -61,7 +61,7 @@ public class server
 				tmp = in.readLine();
 				
 				// preparazione del buffer in uscita
-				out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+				out = new PrintWriter(client.getOutputStream(), true);
 				
 				// elaborazione
 				if (tmp.compareTo("RESET") == 0)

@@ -1,7 +1,7 @@
 /*
 Scrivere in C o Java un programma che:
 
-    apra una connessione verso l'IP 151.97.252.130, port 80
+    apra una connessione verso l'host www.dmi.unict.it, port 80
     invii la stringa "GET /pappalardo/prova/11.aux\n"
     nello stream di byte ricevuti individui la prima parentesi quadra aperta
     memorizzi tutti i successivi byte fino alla prima parentesi quadra chiusa, che il server invierà, in una variabile stringa denominata "s"
@@ -34,11 +34,11 @@ public class es11
 	{
 		try
 		{
-			InetAddress indirizzo = InetAddress.getByName("151.97.252.130");
+			InetAddress indirizzo = InetAddress.getByName("www.dmi.unict.it");
 			Socket client = new Socket(indirizzo, 80);
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			
 			out.println("GET /pappalardo/prova/11.aux\n");
 			
@@ -57,7 +57,7 @@ public class es11
 			
 			client = new Socket(indirizzo, 80);
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			out = new PrintWriter(client.getOutputStream(), true);
 			
 			System.out.println(tmp);
 			

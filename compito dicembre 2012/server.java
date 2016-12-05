@@ -55,7 +55,7 @@ class connect extends Thread
 			
 			// inizializzo i buffer in entrata e uscita
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			out = new PrintWriter(client.getOutputStream(), true);
 			
 			// leggo la stringa in input
 			tmp = in.readLine();

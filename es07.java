@@ -8,42 +8,44 @@ Scrivere in C o Java un programma che:
 5)    scriva questi 31 byte sulla standard output
 */
 
+
 import java.io.*;
 import java.net.*;
 
-public class es07
-{
-	public static void main(String[] args)
-	{
-		String tmp, msg;
-		int i;
-		try
-		{
+public class es07 {
+
+	public static void main(String[] args) {
+
+		try {
 			InetAddress address = InetAddress.getByName("www.dmi.unict.it");
+
 			Socket client = new Socket(address, 80);
+
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())),true);
-			
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+
 			out.println("GET /pappalardo/prova/07.aux");
-			
-			msg = "";
-			
+
+			String tmp, tmp2 = "", s = "";
+
 			while ((tmp = in.readLine()) != null)
-				msg += tmp;
-				
-			i = 0;
-			while(msg.charAt(i) != '-')
-				i++;
-			
-			// java.lang.StringIndexOutOfBoundsException perchè ci sono troppe xxx e un int non basta
-			msg = msg.substring(i, 16);
-			
-			System.out.println(msg);
+				tmp2 += in.readLine();
+
+			for (int i = 0; i < tmp2.length(); i++) {
+
+				if (tmp2.charAt(i) == '-') {
+
+					for (int j = 1; j <= 32; j++) {
+						s+= tmp2.charAt(i+j);
+					}
+					break;
+				}
+			}
+
+			System.out.println(s);
+
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
+		catch (Exception e) { e.printStackTrace(); }
+
 	}
 }

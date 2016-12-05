@@ -50,7 +50,7 @@ public class client
 			
 			// creo i buffer
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			
 			// invio stringa
 			out.println(args[0]);

@@ -123,7 +123,7 @@ public class server
 			{
 				client = server.accept();
 				in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-				out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+				out = new PrintWriter(client.getOutputStream(), true);
 				
 				if (!caller(in.readLine()))
 					out.println("ERROR");

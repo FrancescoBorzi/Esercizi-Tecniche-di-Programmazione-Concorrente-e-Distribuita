@@ -9,11 +9,11 @@ public class client
 	{
 		try
 		{
-			InetAddress indirizzo = InetAddress.getByName("151.97.252.130");
+			InetAddress indirizzo = InetAddress.getByName("www.dmi.unict.it");
 			Socket client = new Socket(indirizzo, 80);
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			
 			String tmp;
 			String sequenza[] = new String[9];

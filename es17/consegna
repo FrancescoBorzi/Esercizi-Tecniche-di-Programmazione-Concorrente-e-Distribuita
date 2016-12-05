@@ -6,7 +6,7 @@ Implementare la funzione hash(s,n) che, applicata a una stringa s, calcoli la so
 
 Scrivere un client che, tramite socket (C o Java):
 
-    Apra una connessione verso l'IP 151.97.252.130 port 80
+    Apra una connessione verso l'host www.dmi.unict.it port 80
     Invii al server la stringa "GET /pappalardo/prova/17.aux\n"
     Analizzi lo stream ricevuto per identificare tutte le coppie di righe consecutive s e t tali che hash(s,30) e hash(t,30) abbiano lo stesso valore
     Scriva su console quante coppie dette sono state trovate.

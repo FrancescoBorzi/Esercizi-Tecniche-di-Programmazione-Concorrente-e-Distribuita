@@ -31,11 +31,11 @@ public class es19
 		
 		try
 		{
-			InetAddress indirizzo = InetAddress.getByName("151.97.252.130");
+			InetAddress indirizzo = InetAddress.getByName("www.dmi.unict.it");
 			Socket client = new Socket(indirizzo, 80);
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			
 			out.println("GET /pappalardo/prova/dizionario\n\n");
 			
@@ -59,7 +59,7 @@ public class es19
 			
 			client = new Socket(indirizzo, 80);
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			out = new PrintWriter(client.getOutputStream(), true);
 			
 			String testo = "";
 			String tmp;

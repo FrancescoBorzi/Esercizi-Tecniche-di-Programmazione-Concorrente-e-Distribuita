@@ -11,10 +11,10 @@ public class client
 		int count = 0;
 		try
 		{
-			InetAddress address = InetAddress.getByName("151.97.252.130");
+			InetAddress address = InetAddress.getByName("www.dmi.unict.it");
 			Socket client = new Socket(address, 80);
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 		
 			out.println("GET /pappalardo/prova/19.aux\n\n");
 			
